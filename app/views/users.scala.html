@@ -1,0 +1,17 @@
+@(users: List[User])
+
+@main {
+   @nav()
+   <div class="row">
+       <div class="col-md-2"></div>
+       <div class="col-md-8">
+           @for(user <- users) {
+                <div class="user">
+                    <p>User's email: @user.getEmail</p>
+                    <a href="@routes.UsersController.profiles(user.getId)">See public profile</a>
+                </div>
+           }
+       </div>
+       <div class="col-md-2"></div>
+   </div>
+}

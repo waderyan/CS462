@@ -1,0 +1,9 @@
+@(user: User, url: String, loggedIn : Boolean)
+@profileBase(false) {
+    <h1>Profile for @user.getEmail</h1>
+    @if(loggedIn) {
+        <a href="@url">Sign in to Foursquare</a>
+    } else {
+        <p>Not signed into foursquare yet</p>
+    }
+}

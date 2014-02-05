@@ -1,0 +1,22 @@
+@(loggedIn : Boolean)(content : Html)
+
+@main {
+<div class="row">
+    <ul class="nav nav-pills nav-justified">
+        <li><a href="@routes.UsersController.login()">Home</a></li>
+        @if(!loggedIn) {
+            <li><a href="@routes.UsersController.login()">Login</a></li>
+        } else {
+            <li><a href="@routes.UsersController.logout()">Logout</a></li>
+        }
+        <li><a href="@routes.UsersController.allUsers()">All Users</a></li>
+    </ul>
+</div>
+<div class="spacer"></div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        @content
+    </div>
+</div>
+}

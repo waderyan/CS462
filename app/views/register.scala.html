@@ -1,0 +1,52 @@
+@()
+
+@form {
+     <form id="register" class="form-horizontal" role="form" method="POST" action="@routes.UsersController.registerSubmit()">
+         <div class="form-group" id="error"></div>
+         <div class="form-group">
+             <label for="emailFirst">Email</label>
+             <input required class="form-control" id="emailFirst" name="email" type="text">
+         </div>
+         <div class="form-group">
+             <label for="emailConfirm">Confirm Email</label>
+             <input required class="form-control" id="emailConfirm" name="emailConfirm" type="text">
+         </div>
+         <div class="form-group">
+             <label for="passwordFirst">Password</label>
+             <input required class="form-control" id="passwordFirst" name="password" type="password">
+         </div>
+         <div class="form-group">
+             <label>Confirm Password</label>
+             <input required class="form-control" id="passwordConfirm" name="passwordConfirm" type="password">
+         </div>
+         <div class="form-group">
+             <button class="btn btn-primary" type="submit">Register</button>
+             <a href="@routes.UsersController.login()">Already have an account?</a>
+         </div>
+     </form>
+    <script>
+            $(function() {
+                $('#register').submit(function(event) {
+                    if($('#emailFirst').val() != $('#emailConfirm').val()) {
+                       $('#error').html('emails do not match');
+                        event.preventDefault();
+                    } else if ($('#passwordFirst').val() != $('#passwordConfirm').val()) {
+                        $('#error').html('passwords do not match');
+                        event.preventDefault();
+                    } else if ($('#emailFirst').val().trim() == '') {
+                       $('#error').html('email cannot be empty');
+                        event.preventDefault();
+                    } else if ($('#passwordFirst').val().trim() == '') {
+                       $('#error').html('password cannot be empty');
+                        event.preventDefault();
+                    }
+                });
+            });
+
+         </script>
+    <style>
+        #error {
+            color: red;
+        }
+    </style>
+}

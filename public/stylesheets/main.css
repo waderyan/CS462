@@ -1,0 +1,30 @@
+/*
+colors
+   green        #00B275, #19FFB0, #00FFA7
+   red          #B22200, #FF3100
+   dark red     #660000
+*/
+@import url(bootstrap.css);
+
+.spacer {
+    margin: 5%;
+}
+
+.checkin {
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+    border-radius: 20px;
+    background-color: #5bc0de;
+    display: inline-block;
+}
+.checkin * {
+    display: inline-block;
+}
+.user {
+   padding: 10px;
+   margin: 10px;
+   border-radius: 20px;
+   background-color: #5bc0de;
+   display: inline-block;
+}

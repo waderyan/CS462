@@ -1,0 +1,47 @@
+@(user: User, content: String, loggedIn: Boolean)
+@profileBase(loggedIn) {
+    <script>
+        $(function() {
+            var content = @Html(content);
+            var checkins = content.response.checkins.items;
+
+            function Checkin(data) {
+                var date = new Date();
+                date.setTime(data.createdAt*1000);
+                this.datetime = 'Checkin on ' + date.toDateString() + ' at ' + date.toLocaleTimeString();
+                this.location = 'Address: ' +
+                                (data.venue.location.address || '') + ' ' +
+                                (data.venue.location.city || '') + ' ' +
+                                (data.venue.location.state || '');
+            }
+
+            Checkin.prototype.render = function() {
+                var block = $('<div>').addClass("checkin");
+                block.append($('<p>').html(this.datetime));
+                block.append($('<p>').html(this.location));
+                return block;
+            }
+
+            $('#foursquare').append($('<p>').html("Checked into " +checkins.length +" locations"));
+
+            @if(loggedIn) {
+                 checkins.forEach(function(checkin) {
+                    $('#foursquare').append(new Checkin(checkin).render());
+                });
+            } else {
+                if(checkins.length > 0) {
+                    $('#foursquare').append(new Checkin(checkins[0]).render());
+                }
+            }
+
+        });
+
+    </script>
+    @if(loggedIn) {
+        <h1>Checkin History for @user.getEmail</h1>
+    } else {
+        <h2>Mose recent checkin for @user.getEmail</h2>
+    }
+
+    <div id="foursquare"></div>
+}

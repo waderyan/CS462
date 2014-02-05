@@ -1,0 +1,19 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                           controllers.Application.index
+
+# User
+GET     /login                      controllers.UsersController.login
+POST    /login                      controllers.UsersController.loginSubmit
+GET     /register                   controllers.UsersController.register
+POST    /register                   controllers.UsersController.registerSubmit
+GET     /profile                    controllers.UsersController.profile
+GET     /profiles/:id               controllers.UsersController.profiles(id: String)
+GET     /logout                     controllers.UsersController.logout
+GET     /callback                   controllers.FoursquareAuth.callback
+GET     /users                      controllers.UsersController.allUsers
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

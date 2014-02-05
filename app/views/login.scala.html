@@ -1,0 +1,18 @@
+@()
+
+@form {
+    <form class="form-horizontal" role="form" method="POST" action="@routes.UsersController.loginSubmit()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input required class="form-control" id="email" name="email" type="text">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input required class="form-control" id="password" name="password" type="password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <a href="@routes.UsersController.register()">Register?</a>
+        </div>
+    </form>
+}
